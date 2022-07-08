@@ -1,4 +1,4 @@
-class HelloWorld extends HTMLElement {
+export class HelloWorld extends HTMLElement {
   constructor() {
     super();
     this.innerHTML = `<p style="background:green">hello world</p>`;
@@ -11,7 +11,7 @@ document.getElementById('app').innerHTML = `
 
 `;
 
-class HelloWorldWithShaodwAndCss extends HTMLElement {
+export class HelloWorldWithShaodwAndCss extends HTMLElement {
   constructor() {
     super();
     let shadow = this.attachShadow({ mode: 'open' });
@@ -32,7 +32,7 @@ class HelloWorldWithShaodwAndCss extends HTMLElement {
   }
 }
 
-class HelloWorldWithShadowAndWithoutCss extends HTMLElement {
+export class HelloWorldWithShadowAndWithoutCss extends HTMLElement {
   constructor() {
     super();
     let shadow = this.attachShadow({ mode: 'open' });
@@ -42,7 +42,7 @@ class HelloWorldWithShadowAndWithoutCss extends HTMLElement {
   }
 }
 
-class HelloWorldWithoutShaodwAndCss extends HTMLElement {
+export class HelloWorldWithoutShaodwAndCss extends HTMLElement {
   constructor() {
     super();
     let p = document.createElement('p');
