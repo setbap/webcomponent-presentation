@@ -1,0 +1,70 @@
+<section>
+  <section>
+    <h3>Using Shadow Dom</h3>
+    <p style="text-align: justify; font-size: smaller">
+      An important aspect of web components is encapsulation — being able to
+      keep the markup structure, style, and behavior hidden and separate from
+      other code on the page so that different parts do not clash, and the code
+      can be kept nice and clean. The Shadow DOM API is a key part of this,
+      providing a way to attach a hidden separated DOM to an element. This
+      article covers the basics of using the Shadow DOM.
+    </p>
+    <p style="border: 4px solid red; border-radius: 8px; padding: 1rem">
+      The difference is that none of the code inside a shadow DOM can affect
+      anything outside it. <br />(thinking about Video tag)
+    </p>
+  </section>
+  <section>
+    <img
+      src="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM/shadowdom.svg"
+    />
+  </section>
+  <section>
+    <ul>
+      There are some bits of shadow DOM terminology to be aware of:
+
+      <li>
+        <code style="background: gray; border-radius: 4px"> Shadow host: </code>
+        The regular DOM node that the shadow DOM isattached to.
+      </li>
+
+      <li>
+        <code style="background: gray; border-radius: 4px"> Shadow tree: </code>
+        The DOM tree inside the shadow DOM.
+      </li>
+
+      <li>
+        <code style="background: gray; border-radius: 4px">
+          Shadow boundary:
+        </code>
+        the place where the shadow DOM ends, and the regular DOM begins.
+      </li>
+      <li>
+        <code style="background: gray; border-radius: 4px"> Shadow root: </code>
+        The root node of the shadow tree.
+      </li>
+    </ul>
+  </section>
+  <section>
+    <h4>Example of Shaodow Root And CSS</h4>
+    <iframe
+      src="https://codesandbox.io/embed/fervent-carson-fodryq?autoresize=1&fontsize=14&hidenavigation=1&theme=dark&view=preview"
+      style="
+        width: 100%;
+        height: 500px;
+        border: 0;
+        border-radius: 4px;
+        overflow: hidden;
+      "
+      title="web-component-shaodw"
+      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+    ></iframe>
+  </section>
+  <section>
+    <h4>More Info About Shaodw Root "Open" and "Closeed"</h4>
+    <a href="https://blog.revillweb.com/open-vs-closed-shadow-dom-9f3d7427d1af">
+      Medium Article
+    </a>
+  </section>
+</section>

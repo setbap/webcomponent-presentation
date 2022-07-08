@@ -1,0 +1,45 @@
+<section>
+  <section>
+    <h3>First Web Component(3 Step)</h3>
+    <ul>
+      <li>Create Class</li>
+      <li>Define Element in Window</li>
+      <li>Usage</li>
+    </ul>
+  </section>
+  <section>
+    <h3>Create Class</h3>
+    <pre>
+  <code data-trim >
+class HelloWorld extends HTMLElement {      
+constructor() {                         
+super();                                
+this.innerHTML = `<p style="background:green">hello world</p>`;
+}
+}
+  </code>
+</pre>
+  </section>
+  <section>
+    <h3>Define Element in Window</h3>
+    <pre>
+<code data-trim >
+  window.customElements.define('hello-world', HelloWorld);
+  </code>
+</pre>
+  </section>
+  <section>
+    <h3>Usage</h3>
+    <pre>
+<code data-trim >
+...
+<hello-world> </hello-world>
+...
+</code>
+</pre>
+  </section>
+  <section>
+    <h3>result</h3>
+    <hello-world> </hello-world>
+  </section>
+</section>
