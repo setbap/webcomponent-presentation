@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    
+
+    
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Component</title>
+    <script type="module" crossorigin src="/assets/index.c2cdef1e.js"></script>
+    <link rel="stylesheet" href="/assets/index.7aa13d05.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- page 1,2 -->
+        <section data-markdown>
+          <textarea data-template>
+### Web Components (What?)
+- Web Components is a suite of different technologies 
+
+- allowing you to create reusable custom elements
+   with their functionality encapsulated away from the rest of your code 
+
+- utilize them in  web apps.
+---
+### Web Components Features
+- Custom Elements <!-- .element: class="fragment" data-fragment-index="1" -->
+  - The Custom Elements specification lays the foundation for designing and using new types of DOM elements. <!-- .element: class="fragment" data-fragment-index="2" -->
+- Shadow DOM      <!-- .element: class="fragment" data-fragment-index="3" -->
+  - The shadow DOM specification defines how to use encapsulated style and markup in web components.        <!-- .element: class="fragment" data-fragment-index="4" -->
+- HTML Template   <!-- .element: class="fragment" data-fragment-index="5" -->
+  - The HTML template element specification defines how to declare fragments of markup that go unused at page load, but can be instantiated later on at runtime.
+
+
+</textarea
+          >
+        </section>
+        <!-- page 3 -->
+        <section>
+          <section>
+            <h3>First Web Component(3 Step)</h3>
+            <ul>
+              <li>Create Class</li>
+              <li>Define Element in Window</li>
+              <li>Usage</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Create Class</h3>
+            <pre>
+<code data-trim >
+class HelloWorld extends HTMLElement {      
+constructor() {                         
+super();                                
+this.innerHTML = `<p style="background:green">hello world</p>`;
+}
+}
+</code>
+</pre>
+          </section>
+          <section>
+            <h3>Define Element in Window</h3>
+            <pre>
+<code data-trim >
+window.customElements.define('hello-world', HelloWorld);
+</code>
+</pre>
+          </section>
+          <section>
+            <h3>Usage</h3>
+            <pre>
+<code data-trim >
+...
+<hello-world> </hello-world>
+...
+</code>
+</pre>
+          </section>
+          <section>
+            <h3>result</h3>
+            <hello-world> </hello-world>
+          </section>
+        </section>
+
+        <!-- page 4 -->
+        <section>
+          <section>
+            <h3>Using custom elements</h3>
+
+            <ul style="font-size: smaller; line-height: 1.2 rem">
+              <li>
+                A string representing the name you are giving to the element.
+                Note that custom element names require a dash to be used in them
+                (kebab-case); they can't be single words.
+              </li>
+              <br />
+              <li>A class object that defines the behavior of the element.</li>
+              <br />
+              <li>
+                <code style="background: red; border-radius: 4px">
+                  (Optional)
+                </code>
+                An options object containing an extends property, which
+                specifies the built-in element your element inherits from, if
+                any (only relevant to customized built-in elements; see the
+                definition below).
+              </li>
+            </ul>
+            <pre>
+<code data-trim>
+  window.customElements.define('string-representing', Class,{});
+</code>
+</pre>
+          </section>
+          <section>
+            <p>There are two types of custom elements:</p>
+
+            <ul style="font-size: smaller; line-height: 1.2 rem">
+              <li>
+                <b>Autonomous custom elements are standalone</b> — they don't
+                inherit from standard HTML elements.
+              </li>
+              <pre>
+  <code data-trim>
+class AutonomousElements extends HTMLElement {
+constructor() {
+// Always call super first in constructor
+super();
+// write element functionality in here
+}
+}
+  </code>
+  </pre>
+              <li>
+                <b> Customized built-in elements</b> inherit from basic HTML
+                elements.
+              </li>
+              <pre>
+  <code data-trim>
+class ExpandingList extends HTMLUListElement  {
+constructor() {
+super();
+// write element functionality in here
+}
+}
+customElements.define('expanding-list', ExpandingList, { extends: "ul" });
+// html side
+<ul is="expanding-list">
+...
+</ul>
+  </code>
+  </pre>
+            </ul>
+          </section>
+          <section>
+            <h3>Using the lifecycle callbacks</h3>
+            <ul style="font-size: smaller; line-height: 1.15 rem">
+              <li>
+                <code style="background: gray; border-radius: 4px">
+                  connectedCallback:
+                </code>
+                Invoked each time the custom element is appended into a
+                document-connected element. This will happen each time the node
+                is moved, and may happen before the element's contents have been
+                fully parsed.
+              </li>
+              <br />
+
+              <li>
+                <code style="background: gray; border-radius: 4px">
+                  disconnectedCallback:
+                </code>
+                Invoked each time the custom element is disconnected from the
+                document's DOM.
+              </li>
+              <br />
+
+              <li>
+                <code style="background: gray; border-radius: 4px">
+                  adoptedCallback:
+                </code>
+                Invoked each time the custom element is disconnected from the
+                document's DOM.
+              </li>
+              <br />
+
+              <li>
+                <code style="background: gray; border-radius: 4px">
+                  attributeChangedCallback:
+                </code>
+                Invoked each time one of the custom element's attributes is
+                added, removed, or changed. Which attributes to notice change
+                for is specified in a static get observedAttributes method
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h3>Example</h3>
+            <a
+              href="https://mdn.github.io/web-components-examples/life-cycle-callbacks/"
+              target="blank"
+            >
+              Example of lifecycles
+            </a>
+          </section>
+        </section>
+
+        <!-- page 5 -->
+        <section>
+          <section>
+            <h3>Using Shadow Dom</h3>
+            <p style="text-align: justify; font-size: smaller">
+              An important aspect of web components is encapsulation — being
+              able to keep the markup structure, style, and behavior hidden and
+              separate from other code on the page so that different parts do
+              not clash, and the code can be kept nice and clean. The Shadow DOM
+              API is a key part of this, providing a way to attach a hidden
+              separated DOM to an element. This article covers the basics of
+              using the Shadow DOM.
+            </p>
+            <p style="border: 4px solid red; border-radius: 8px; padding: 1rem">
+              The difference is that none of the code inside a shadow DOM can
+              affect anything outside it. <br />(thinking about Video tag)
+            </p>
+          </section>
+          <section>
+            <img
+              src="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM/shadowdom.svg"
+            />
+          </section>
+          <section>
+            <ul>
+              There are some bits of shadow DOM terminology to be aware of:
+
+              <li>
+                <code style="background: gray; border-radius: 4px">
+                  Shadow host:
+                </code>
+                The regular DOM node that the shadow DOM isattached to.
+              </li>
+
+              <li>
+                <code style="background: gray; border-radius: 4px">
+                  Shadow tree:
+                </code>
+                The DOM tree inside the shadow DOM.
+              </li>
+
+              <li>
+                <code style="background: gray; border-radius: 4px">
+                  Shadow boundary:
+                </code>
+                the place where the shadow DOM ends, and the regular DOM begins.
+              </li>
+              <li>
+                <code style="background: gray; border-radius: 4px">
+                  Shadow root:
+                </code>
+                The root node of the shadow tree.
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h4>Example of Shaodow Root And CSS</h4>
+            <iframe
+              src="https://codesandbox.io/embed/fervent-carson-fodryq?autoresize=1&fontsize=14&hidenavigation=1&theme=dark&view=preview"
+              style="
+                width: 100%;
+                height: 500px;
+                border: 0;
+                border-radius: 4px;
+                overflow: hidden;
+              "
+              title="web-component-shaodw"
+              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+            ></iframe>
+          </section>
+          <section>
+            <h4>More Info About Shaodw Root "Open" and "Closeed"</h4>
+            <a
+              href="https://blog.revillweb.com/open-vs-closed-shadow-dom-9f3d7427d1af"
+            >
+              Medium Article
+            </a>
+          </section>
+        </section>
+
+        <!-- page 6 -->
+        <section>
+          <section>
+            <h2>Templates</h2>
+            <p>
+              <b>Template</b> Help User to reuse the same markup structures
+              repeatedly on a web page, This element and its contents are not
+              rendered in the DOM, but it can still be referenced using
+              JavaScript.
+            </p>
+            <pre>
+          <code>
+<!-- html -->
+<template id="my-paragraph">
+<p>My paragraph</p>
+</template>
+<!-- js -->
+<script>
+const template = document.getElementById('my-paragraph');
+const templateContent = template.content;
+document.body.appendChild(templateContent);
+</script>
+          </code>
+        </pre>
+          </section>
+          <section>
+            <h2>Slots</h2>
+            <p>
+              <b>Slots</b> make our templates more flexible, we can add slots to
+              Template to display content to add more flexibility.
+            </p>
+            <pre>
+        <code>
+      <!-- template definition -->
+      <template>
+        <div class="inner-template">
+          <div>firstname : </div><slot name="firstname"></slot>
+          <div>lastname : </div><slot name="lastname"></slot>
+        </div>
+      </template>
+      <!-- usage with web component -->
+      <name-temolate>
+        <span slot="firstname">sina</span>
+        <span slot="lastname">ebr</span>
+      </name-temolate>
+        </code>
+      </pre>
+          </section>
+          <section>
+            <h3>Example</h3>
+            <iframe
+              src="https://codesandbox.io/embed/template-and-slots-w5moq4?autoresize=1&fontsize=14&hidenavigation=1&theme=dark&view=preview"
+              style="
+                width: 100%;
+                height: 500px;
+                border: 0;
+                border-radius: 4px;
+                overflow: hidden;
+              "
+              title="template-and-slots"
+              allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+              sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+            ></iframe>
+          </section>
+        </section>
+      </div>
+    </div>
+    
+    
+  </body>
+</html>
