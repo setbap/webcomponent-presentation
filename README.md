@@ -1,3 +1,5 @@
-# vitejs-vite-qoygmg
+an introduction of web component
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/vitejs-vite-qoygmg)
+created by sina
+
+July 2020
